@@ -17,6 +17,11 @@ fun todoTask10(): Nothing = TODO(
 
 fun task10(): List<Int> {
     val arrayList = arrayListOf(1, 5, 2)
-    Collections.sort(arrayList, todoTask10())
+    Collections.sort(arrayList, object: Comparator<Int> {
+        // Not null-safe. Not really sure what the result of a comparator should be if one
+        // of its arguments is null...
+        override fun compare(o1: Int, o2: Int): Int = o2.compareTo(o1)
+
+    })
     return arrayList
 }
