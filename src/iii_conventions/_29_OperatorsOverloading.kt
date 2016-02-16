@@ -19,13 +19,20 @@ fun todoTask29(): Nothing = TODO(
         date.addTimeIntervals(timeInterval, 1)
     })
 
+operator fun MyDate.plus(timeInterval: TimeInterval): MyDate = this.addTimeIntervals(timeInterval, 1)
+
 fun task29_1(today: MyDate): MyDate {
-    todoTask29()
-//    return today + YEAR + WEEK
+    return today + YEAR + WEEK
 }
 
+data class RepeatedTimeInterval(val timeInterval: TimeInterval, val count: Int)
+
+operator fun TimeInterval.times(n: Int) = RepeatedTimeInterval(this, n)
+
+operator fun MyDate.plus(repeatedTimeInterval: RepeatedTimeInterval) =
+    this.addTimeIntervals(repeatedTimeInterval.timeInterval, repeatedTimeInterval.count)
+
 fun task29_2(today: MyDate): MyDate {
-    todoTask29()
-//    return today + YEAR * 2 + WEEK * 3 + DAY * 5
+    return today + YEAR * 2 + WEEK * 3 + DAY * 5
 }
 
