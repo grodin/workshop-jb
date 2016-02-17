@@ -21,11 +21,21 @@ fun task41(): Nothing = TODO(
 )
 
 fun List<String>.partitionWordsAndLines(): Pair<List<String>, List<String>> {
-    task41()
-//    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+//    task41()
+    return partitionTo(ArrayList<String>(), ArrayList()) { s -> !s.contains(" ") }
+}
+
+fun <E, R: MutableCollection<E>> Collection<E>.partitionTo(collectionForTrue: R,
+                                                    collectionForFalse: R,
+                                                    predicate: (E) -> Boolean): Pair<R, R>{
+    val (lTrue, lFalse) = partition(predicate)
+    collectionForTrue.addAll(lTrue)
+    collectionForFalse.addAll(lFalse)
+    return Pair(collectionForTrue,collectionForFalse)
+
 }
 
 fun Set<Char>.partitionLettersAndOtherSymbols(): Pair<Set<Char>, Set<Char>> {
-    task41()
-//    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
+//    task41()
+    return partitionTo(HashSet<Char>(), HashSet()) { c -> c in 'a'..'z' || c in 'A'..'Z'}
 }
